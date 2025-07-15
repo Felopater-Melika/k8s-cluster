@@ -1,0 +1,17 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: lab-felopater-codes
+  namespace: default
+spec:
+  secretName: lab-felopater-codes-staging-tls
+  issuerRef:
+    name: letsencrypt-staging
+    kind: ClusterIssuer
+  commonName: lab.felopater.codes
+  dnsNames:
+    - lab.felopater.codes
+    - "*.lab.felopater.codes"
+  privateKey:
+    rotationPolicy: Always

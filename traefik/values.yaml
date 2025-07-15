@@ -5,6 +5,9 @@ globalArguments:
 additionalArguments:
   - "--serversTransport.insecureSkipVerify=true"
   - "--log.level=DEBUG"
+  - "--entrypoints.websecure.http.tls.certresolver=letsencrypt"
+  - "--entrypoints.websecure.http.tls.domains[0].main=lab.felopater.codes"
+  - "--entrypoints.websecure.http.tls.domains[0].sans=*.lab.felopater.codes"
 
 deployment:
   enabled: true
@@ -23,7 +26,7 @@ ports:
   websecure:
     http3:
       enabled: true
-    advertisedPort: 4443
+    advertisedPort: 443
     tls:
       enabled: true
 
@@ -47,12 +50,10 @@ rbac:
 
 service:
   enabled: true
-  type: NodePort
-  # This is for MetalLB baremetal setup.
-  # type: LoadBalancer
-  # annotations: {}
-  # labels: {}
-  # spec:
-  #   loadBalancerIP: 192.168.30.80 # this should be an IP in the MetalLB range
-  # loadBalancerSourceRanges: []
-  # externalIPs: []
+  type: LoadBalancer
+  annotations: {}
+  labels: {}
+  spec:
+    loadBalancerIP: 76.114.120.207 # this should be an IP in the MetalLB range
+  loadBalancerSourceRanges: []
+  externalIPs: []
