@@ -15,7 +15,7 @@ spec:
       services:
         - name: nginx
           port: 80
-    - match: Host(`nginx.lab.felopater.codes`)
+    - match: Host(`nginx.lab.felopater.codes`) && PathPrefix(`/`)
       kind: Rule
       services:
         - name: nginx

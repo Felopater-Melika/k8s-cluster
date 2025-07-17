@@ -50,10 +50,10 @@ rbac:
 
 service:
   enabled: true
-  type: LoadBalancer
+  type: NodePort
   annotations: {}
   labels: {}
   spec:
-    loadBalancerIP: 76.114.120.207 # this should be an IP in the MetalLB range
+    # Removed loadBalancerIP since we're using NodePort
   loadBalancerSourceRanges: []
   externalIPs: []
